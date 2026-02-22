@@ -15,7 +15,7 @@
             "email": "d.illarionov@teateam.org"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "filament/filament": "^3.0"
     },

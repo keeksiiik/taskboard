@@ -43,7 +43,7 @@
                                 </button>
                             </div>
 
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ Str::limit($task->description, 50) }}</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ Str::limit($task->description, 150) }}</p>
 
                             <div class="mt-2 flex flex-wrap gap-2 text-xs">
                                 @if($task->priority)
@@ -61,7 +61,7 @@
                                 @endif
                                 @if($task->assigned_to)
                                     <span class="px-2 py-1 rounded bg-blue-200 dark:bg-blue-700 text-blue-800 dark:text-blue-200">
-                                        {{ $task->assignedTo->name }}
+                                        {{ $task->assignedTo->full_name }}
                                     </span>
                                 @endif
                             </div>

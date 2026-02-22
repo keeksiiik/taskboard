@@ -22,11 +22,6 @@ class TaskboardServiceProvider extends PackageServiceProvider
         public function boot(): void
         {
             parent::boot();
-            $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-            $this->publishes([
-                __DIR__.'/resources/view' => resource_path('views/vendor/dillarionov/taskboard'),
-                __DIR__.'/resources/lang' => resource_path('lang/vendor/dillarionov/taskboard'),
-            ]);
             Livewire::component('taskboard', Taskboard::class);
         }
 }

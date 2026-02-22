@@ -14,7 +14,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Actions\Action;
 use Filament\Forms;
 use Carbon\Carbon;
-use App\Models\User;
+use App\Models\User\User;
 use dillarionov\Taskboard\Models\Priority;
 use dillarionov\Taskboard\Models\Complexity;
 
@@ -23,7 +23,7 @@ class Taskboard extends Component implements HasActions, HasForms
     use InteractsWithActions;
     use InteractsWithForms;
 
-    #[On('task-created')] 
+    #[On('task-created')]
     public function refresh() {}
 
     #[Computed]

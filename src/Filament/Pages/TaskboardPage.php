@@ -14,7 +14,7 @@ use dillarionov\Taskboard\Models\Complexity;
 use dillarionov\Taskboard\Models\Priority;
 use dillarionov\Taskboard\Models\Status;
 use dillarionov\Taskboard\Models\Task;
-use App\Models\User;
+use App\Models\User\User;
 
 class TaskboardPage extends Page
 {
@@ -85,11 +85,11 @@ class TaskboardPage extends Page
                     return $data;
                 })
                 ->after(function () {
-                    // Force refresh of the Livewire component if needed, 
+                    // Force refresh of the Livewire component if needed,
                     // or rely on page reload. Filament CreateAction stays on page by default unless configured.
                     // If we want to refresh the taskboard, we might need an event.
                     // But for now, let's keep it simple.
-                    $this->dispatch('task-created'); 
+                    $this->dispatch('task-created');
                 }),
             Action::make('settings')
                 ->label(__('taskboard::taskboard.settings'))

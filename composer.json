@@ -1,0 +1,29 @@
+{
+    "name": "dillarionov/taskboard",
+    "description": "A Filament plugin for managing tasks with a taskboard interface.",
+    "keywords": ["laravel", "filament", "plugin"],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "dillarionov\\Taskboard\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dillarionov",
+            "email": "d.illarionov@teateam.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "filament/filament": "^3.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "dillarionov\\Taskboard\\TaskboardServiceProvider"
+            ]
+        }
+    }
+}

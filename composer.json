@@ -2,6 +2,7 @@
     "name": "dillarionov/taskboard",
     "description": "A Filament plugin for managing tasks with a taskboard interface.",
     "keywords": ["laravel", "filament", "plugin"],
+    "version": "1.0.0",
     "type": "library",
     "license": "MIT",
     "autoload": {

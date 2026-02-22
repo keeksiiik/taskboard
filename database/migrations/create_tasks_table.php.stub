@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('taskboard_tasks', function (Blueprint $table) {
-            $table->id();
+            $table->uuid();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->foreignId('status_id')->constrained('taskboard_statuses')->cascadeOnDelete();
-            $table->foreignId('priority_id')->constrained('taskboard_priorities')->cascadeOnDelete();
-            $table->foreignId('complexity_id')->constrained('taskboard_complexities')->cascadeOnDelete();
-            $table->foreignId('assigned_to')->nullable()->constrained('users')->cascadeOnDelete();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
+            $table->foreignUuid('status_id')->constrained('taskboard_statuses')->cascadeOnDelete();
+            $table->foreignUuid('priority_id')->constrained('taskboard_priorities')->cascadeOnDelete();
+            $table->foreignUuid('complexity_id')->constrained('taskboard_complexities')->cascadeOnDelete();
+            $table->foreignUuid('assigned_to')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->foreignUuid('created_by')->constrained('users')->cascadeOnDelete();
             $table->timestamp('due_date')->nullable();
             $table->timestamp('started_at')->nullable();
             $table->timestamp('completed_at')->nullable();

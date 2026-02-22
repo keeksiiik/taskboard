@@ -2,11 +2,13 @@
 
 namespace dillarionov\Taskboard\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Priority extends Model
 {
+    use HasUuids;
     protected $table = 'taskboard_priorities';
 
     protected $fillable = [

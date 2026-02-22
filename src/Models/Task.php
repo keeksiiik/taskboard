@@ -4,13 +4,14 @@ namespace dillarionov\Taskboard\Models;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Task extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'taskboard_tasks';
 

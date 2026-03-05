@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('taskboard_tasks', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid()->primary();
             $table->string('title');
             $table->text('description')->nullable();
             $table->foreignUuid('status_id')->constrained('taskboard_statuses')->cascadeOnDelete();

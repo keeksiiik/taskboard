@@ -2,7 +2,6 @@
 
 namespace dillarionov\Taskboard\Models;
 
-use App\Models\User\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,11 +60,11 @@ class Task extends Model
 
     public function assignedTo(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'assigned_to');
+        return $this->belongsTo(config('taskboard.user_model', \App\Models\User\User::class), 'assigned_to');
     }
 
     public function createdBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(config('taskboard.user_model', \App\Models\User\User::class), 'created_by');
     }
 }

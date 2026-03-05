@@ -14,7 +14,6 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Actions\Action;
 use Filament\Forms;
 use Carbon\Carbon;
-use App\Models\User\User;
 use dillarionov\Taskboard\Models\Priority;
 use dillarionov\Taskboard\Models\Complexity;
 
@@ -84,7 +83,17 @@ class Taskboard extends Component implements HasActions, HasForms
                         ->default(fn () => Complexity::orderBy('sort_order')->first()?->id),
                     Forms\Components\Select::make('assigned_to')
                         ->label(__('taskboard::taskboard.fields.assigned_to'))
-                        ->relationship('assignedTo', 'name')
+                        ->relationship('assignedTo', 'name', function ($query) {
+                            if ($conditions = config('taskboard.assignee_conditions', [])) {
+                                $query->where($conditions);
+                            }
+                            
+                            if ($scope = config('taskboard.assignee_scope')) {
+                                $query->{$scope}();
+                            }
+                            
+                            return $query;
+                        })
                         ->searchable(),
                     Forms\Components\DateTimePicker::make('started_at')
                         ->label(__('taskboard::taskboard.fields.started_at')),

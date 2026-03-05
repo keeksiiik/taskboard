@@ -44,6 +44,7 @@ class TaskboardPage extends Page
         return [
             CreateAction::make()
                 ->label(__('taskboard::taskboard.actions.create_task'))
+                ->modalHeading(__('taskboard::taskboard.actions.create_task'))
                 ->model(Task::class)
                 ->form([
                     Forms\Components\TextInput::make('title')

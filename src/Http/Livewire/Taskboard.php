@@ -85,7 +85,13 @@ class Taskboard extends Component implements HasActions, HasForms
                         ->label(__('taskboard::taskboard.fields.assigned_to'))
                         ->relationship('assignedTo', 'name', function ($query) {
                             if ($conditions = config('taskboard.assignee_conditions', [])) {
-                                $query->where($conditions);
+                                foreach ($conditions as $column => $value) {
+                                    if (is_array($value)) {
+                                        $query->whereIn($column, $value);
+                                    } else {
+                                        $query->where($column, $value);
+                                    }
+                                }
                             }
                             
                             if ($scope = config('taskboard.assignee_scope')) {

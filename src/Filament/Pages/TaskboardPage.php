@@ -73,7 +73,26 @@ class TaskboardPage extends Page
                                 ->default(fn () => Complexity::orderBy('sort_order')->first()?->id),
                             Forms\Components\Select::make('assigned_to')
                                 ->label(__('taskboard::taskboard.fields.assigned_to'))
-                                ->options(User::pluck('name', 'id'))
+                                ->options(function () {
+                                    $modelClass = config('taskboard.user_model', \App\Models\User\User::class);
+                                    $query = $modelClass::query();
+
+                                    if ($conditions = config('taskboard.assignee_conditions', [])) {
+                                        foreach ($conditions as $column => $value) {
+                                            if (is_array($value)) {
+                                                $query->whereIn($column, $value);
+                                            } else {
+                                                $query->where($column, $value);
+                                            }
+                                        }
+                                    }
+
+                                    if ($scope = config('taskboard.assignee_scope')) {
+                                        $query->{$scope}();
+                                    }
+
+                                    return $query->pluck('name', 'id');
+                                })
                                 ->searchable(),
                             Forms\Components\DateTimePicker::make('started_at')
                                 ->label(__('taskboard::taskboard.fields.started_at')),
@@ -108,6 +127,7 @@ class TaskboardPage extends Page
                                 ->schema([
                                     Forms\Components\Repeater::make('statuses')
                                         ->label(__('taskboard::taskboard.tabs.statuses'))
+                                        ->addActionLabel(__('taskboard::taskboard.tabs.actions.create_status'))
                                         ->collapsed(true)
                                         ->schema([
                                             Forms\Components\Hidden::make('id'),
@@ -136,6 +156,7 @@ class TaskboardPage extends Page
                                 ->schema([
                                     Forms\Components\Repeater::make('priorities')
                                         ->label(__('taskboard::taskboard.tabs.priorities'))
+                                        ->addActionLabel(__('taskboard::taskboard.tabs.actions.create_priority'))
                                         ->collapsed(true)
                                         ->schema([
                                             Forms\Components\Hidden::make('id'),
@@ -164,6 +185,7 @@ class TaskboardPage extends Page
                                 ->schema([
                                     Forms\Components\Repeater::make('complexities')
                                         ->label(__('taskboard::taskboard.tabs.complexities'))
+                                        ->addActionLabel(__('taskboard::taskboard.tabs.actions.create_complexity'))
                                         ->collapsed(true)
                                         ->schema([
                                             Forms\Components\Hidden::make('id'),

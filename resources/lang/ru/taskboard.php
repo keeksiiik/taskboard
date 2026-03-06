@@ -9,6 +9,11 @@ return [
         'statuses' => 'Статусы',
         'priorities' => 'Приоритеты',
         'complexities' => 'Сложности',
+        'actions' => [
+            'create_status' => 'Добавить статус',
+            'create_priority' => 'Добавить приоритет',
+            'create_complexity' => 'Добавить сложность'
+        ],
     ],
     'fields' => [
         'name' => 'Название',

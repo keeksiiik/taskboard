@@ -22,7 +22,10 @@ class TaskboardPage extends Page
 
     protected static string $view = 'taskboard::filament.pages.taskboard-page';
 
-    protected static ?int $navigationSort = 1;
+    public static function getNavigationSort(): ?int
+    {
+        return config('taskboard.navigation_sort');
+    }
 
     public static function getNavigationLabel(): string
     {
@@ -31,7 +34,7 @@ class TaskboardPage extends Page
 
     public static function getNavigationGroup(): ?string
     {
-        return __('taskboard::taskboard.navigation_group');
+        return config('taskboard.navigation_group');
     }
 
     public function getTitle(): \Illuminate\Contracts\Support\Htmlable|string

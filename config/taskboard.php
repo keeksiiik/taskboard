@@ -34,8 +34,6 @@ return [
 
     'assignee_scope' => null,
 
-    'title' => __('taskboard::taskboard.title'),
-
     'navigation_group' => 'Администратор',
 
     'navigation_sort' => 13,

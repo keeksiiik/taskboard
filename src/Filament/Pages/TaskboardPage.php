@@ -32,6 +32,19 @@ class TaskboardPage extends Page
         return __('taskboard::taskboard.title');
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        $statusIds = Status::where('show_in_navigation_badge', true)->pluck('id');
+
+        if ($statusIds->isEmpty()) {
+            return null;
+        }
+
+        $count = Task::whereIn('status_id', $statusIds)->count();
+
+        return $count > 0 ? (string) $count : null;
+    }
+
     public static function getNavigationGroup(): ?string
     {
         return config('taskboard.navigation_group');
@@ -148,6 +161,9 @@ class TaskboardPage extends Page
                                                 ->label(__('taskboard::taskboard.fields.sort_order'))
                                                 ->numeric()
                                                 ->default(0),
+                                            Forms\Components\Toggle::make('show_in_navigation_badge')
+                                                ->label(__('taskboard::taskboard.fields.show_in_navigation_badge'))
+                                                ->default(false),
                                         ])
                                         ->orderColumn('sort_order')
                                         ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)

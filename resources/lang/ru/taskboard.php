@@ -29,6 +29,7 @@ return [
         'started_at' => 'Дата начала',
         'created_by' => 'Создатель',
         'status' => 'Статус',
+        'show_in_navigation_badge' => 'Отображать в бейдже навигации',
     ],
     'actions' => [
         'create_task' => 'Создать задачу',

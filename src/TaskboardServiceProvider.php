@@ -16,12 +16,12 @@ class TaskboardServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasTranslations()
-            ->hasMigrations(['create_statuses_table', 'create_priorities_table', 'create_complexities_table', 'create_tasks_table']);
+            ->hasMigrations(['create_statuses_table', 'create_priorities_table', 'create_complexities_table', 'create_tasks_table', 'add_show_in_navigation_badge_to_taskboard_statuses_table']);
     }
 
-        public function boot(): void
-        {
-            parent::boot();
-            Livewire::component('taskboard', Taskboard::class);
-        }
+    public function boot(): void
+    {
+        parent::boot();
+        Livewire::component('taskboard', Taskboard::class);
+    }
 }

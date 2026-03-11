@@ -107,7 +107,7 @@ class TaskboardPage extends Page
                                         $query->{$scope}();
                                     }
 
-                                    return $query->pluck(config('taskboard.pluck', 'name'), 'id');
+                                    return $query->get()->pluck(config('taskboard.pluck', 'name'), 'id');
                                 })
                                 ->searchable(),
                             Forms\Components\DateTimePicker::make('started_at')

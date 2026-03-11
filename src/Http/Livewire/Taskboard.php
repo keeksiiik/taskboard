@@ -83,7 +83,10 @@ class Taskboard extends Component implements HasActions, HasForms
                         ->default(fn () => Complexity::orderBy('sort_order')->first()?->id),
                     Forms\Components\Select::make('assigned_to')
                         ->label(__('taskboard::taskboard.fields.assigned_to'))
-                        ->relationship('assignedTo', 'name', function ($query) {
+                        ->options(function () {
+                            $modelClass = config('taskboard.user_model', \App\Models\User\User::class);
+                            $query = $modelClass::query();
+
                             if ($conditions = config('taskboard.assignee_conditions', [])) {
                                 foreach ($conditions as $column => $value) {
                                     if (is_array($value)) {
@@ -99,7 +102,6 @@ class Taskboard extends Component implements HasActions, HasForms
                             }
 
                             return $query->get()->pluck(config('taskboard.pluck', 'name'), 'id');
-
                         })
                         ->searchable(),
                     Forms\Components\DateTimePicker::make('started_at')

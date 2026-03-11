@@ -154,6 +154,7 @@ class TaskboardPage extends Page
                                                 ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state))),
                                             Forms\Components\TextInput::make('slug')
                                                 ->label(__('taskboard::taskboard.fields.slug'))
+                                                ->hidden()
                                                 ->required(),
                                             Forms\Components\ColorPicker::make('color')
                                                 ->label(__('taskboard::taskboard.fields.color')),
@@ -186,6 +187,7 @@ class TaskboardPage extends Page
                                                 ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state))),
                                             Forms\Components\TextInput::make('slug')
                                                 ->label(__('taskboard::taskboard.fields.slug'))
+                                                ->hidden()
                                                 ->required(),
                                             Forms\Components\ColorPicker::make('color')
                                                 ->label(__('taskboard::taskboard.fields.color')),
@@ -215,6 +217,7 @@ class TaskboardPage extends Page
                                                 ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state))),
                                             Forms\Components\TextInput::make('slug')
                                                 ->label(__('taskboard::taskboard.fields.slug'))
+                                                ->hidden()
                                                 ->required(),
                                             Forms\Components\ColorPicker::make('color')
                                                 ->label(__('taskboard::taskboard.fields.color')),

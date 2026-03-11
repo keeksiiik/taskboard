@@ -44,7 +44,7 @@
 
                     <div class="flex justify-between items-start">
                         <div class="font-medium">{{ $task->title }}</div>
-                        <button wire:click="mountAction('editTask', { id: {{ $task->id }} })"
+                        <button wire:click="mountAction('editTask', { id: '{{ $task->id }}' })"
                             class="edit-btn text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1"
                             onclick="event.stopPropagation()">
                             <x-heroicon-m-pencil-square class="w-4 h-4" />

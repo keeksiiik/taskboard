@@ -93,12 +93,12 @@ class Taskboard extends Component implements HasActions, HasForms
                                     }
                                 }
                             }
-                            
+
                             if ($scope = config('taskboard.assignee_scope')) {
                                 $query->{$scope}();
                             }
-                            
-                            return $query;
+
+                            return $query->pluck(config('taskboard.pluck', 'name'), 'id');
                         })
                         ->searchable(),
                     Forms\Components\DateTimePicker::make('started_at')
